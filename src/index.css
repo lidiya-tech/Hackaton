@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #022719;
+  --color-green: #7EDC8B;
+  --color-gold: #F3C06D;
+  --color-jade: #C1C3AC;
+  --color-light: #FFFFFF;
+  --color-text: #27221F;
+  --color-muted: #A8B5A0;
+  --color-card-dark: #033520;
+  
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Montserrat', Arial, sans-serif;
+  --font-sans: 'Montserrat', Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-light);
+    background: var(--color-dark);
+    line-height: 1.6;
+    margin: 0;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-green);
+    border-radius: 99px;
+  }
+}
+
+/* ===================================================
+   CUSTOM DESIGN CLASSES FROM CLAUDE DESIGN
+   =================================================== */
+
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Buttons */
+.btn-custom {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.03em;
+  border: 2px solid transparent;
+  text-align: center;
+}
+
+.btn-custom--gold {
+  background: var(--color-gold);
+  color: var(--color-dark);
+}
+.btn-custom--gold:hover { background: #e6ad55; }
+
+.btn-custom--green {
+  background: var(--color-green);
+  color: var(--color-dark);
+}
+.btn-custom--green:hover { background: #5fcf6f; }
+
+.btn-custom--outline-gold {
+  background: transparent;
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+.btn-custom--outline-gold:hover {
+  background: var(--color-gold);
+  color: var(--color-dark);
+}
+
+.btn-custom--outline-green {
+  background: transparent;
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+.btn-custom--outline-green:hover {
+  background: var(--color-green);
+  color: var(--color-dark);
+}
+
+/* Hero design */
+.hero-custom {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    to bottom right,
+    rgba(2, 39, 25, 0.95),
+    rgba(3, 53, 32, 0.8)
+  );
+}
+
+.hero-custom__card {
+  flex-shrink: 0;
+  width: 330px;
+  max-width: 100%;
+}
+
+.ai-preview-custom {
+  background: var(--color-light);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  color: var(--color-text);
+  text-align: left;
+}
+
+.ai-preview-custom__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.ai-preview-custom__logo {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+.ai-preview-custom__tagline {
+  font-size: 10px;
+  color: var(--color-muted);
+}
+
+.ai-preview-custom__greeting p { font-size: 14px; color: var(--color-text); }
+.ai-preview-custom__prompt { color: var(--color-dark); font-weight: 600; margin-top: 4px; }
+
+.ai-preview-custom__mic {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f4f4f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 14px 0;
+}
+.mic-btn-custom { font-size: 20px; }
+.ai-preview-custom__mic span { font-size: 10px; color: #666; }
+
+.ai-preview-custom__score {
+  background: var(--color-dark);
+  color: var(--color-light);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.score-label-custom { font-size: 10px; opacity: 0.7; margin-bottom: 4px; }
+.score-value-custom { font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--color-gold); }
+.score-value-custom span { font-size: 16px; opacity: 0.6; }
+.score-tag-custom { font-size: 11px; color: var(--color-green); margin-top: 4px; }
+
+.ai-preview-custom__circle {
+  font-size: 11px;
+  color: #555;
+  background: #eef5ee;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+/* Journey Timeline */
+.timeline-custom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.timeline-custom__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+  text-align: center;
+}
+
+.timeline-custom__icon {
+  width: 60px;
+  height: 60px;
+  background: var(--color-card-dark);
+  border: 2px solid var(--color-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  transition: background 0.25s;
+}
+.timeline-custom__step:hover .timeline-custom__icon {
+  background: var(--color-green);
+}
+
+.timeline-custom__step p {
+  font-size: 13px;
+  color: var(--color-light);
+  font-weight: 500;
+}
+
+.timeline-custom__arrow {
+  font-size: 22px;
+  color: var(--color-gold);
+  padding-top: 18px;
+  flex-shrink: 0;
+}
+
+/* Animations */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.98); }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out;
+}

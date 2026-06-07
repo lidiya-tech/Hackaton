@@ -49,7 +49,11 @@ function App() {
   // User Auth State (using sessionStorage to enable multi-user testing in separate tabs)
   const [currentUser, setCurrentUser] = useState(() => {
     const saved = sessionStorage.getItem("warka_current_user");
-    return saved ? JSON.parse(saved) : null;
+    if (saved) return JSON.parse(saved);
+    // Default guest user since login is removed
+    const guestUser = { username: 'guest', nickname: 'Guest', email: 'guest@warka.app', profile: {} };
+    sessionStorage.setItem("warka_current_user", JSON.stringify(guestUser));
+    return guestUser;
   });
 
   // Auth Form States

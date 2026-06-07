@@ -315,10 +315,10 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
 
   // --- RENDERING CHAT INTERFACE ---
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 min-h-screen">
       
       {/* Page Header with User Profile Details */}
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-lg">
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-3 sm:p-4 flex flex-wrap items-center justify-between gap-3 sm:gap-4 shadow-lg">
         <div className="flex items-center space-x-3 text-left">
           <div className="w-10 h-10 rounded-full bg-[#BA7517] border border-[#F3C06D] flex items-center justify-center text-lg font-bold text-white shadow-md">
             {currentUser.nickname.charAt(0)}
@@ -362,10 +362,10 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
       </div>
 
       {/* Dashboard Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6">
         
         {/* Left Side: Sidebar Directory (Circles & Users Switcher) */}
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col space-y-4 shadow-lg h-[620px]">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-3 sm:p-4 flex flex-col space-y-3 sm:space-y-4 shadow-lg h-[400px] sm:h-[520px] lg:h-[620px]">
           
           {/* Tab switches: Circles vs Direct Messages */}
           <div className="flex bg-black/20 p-1 rounded-xl gap-1 border border-white/5">
@@ -573,7 +573,7 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
         </div>
 
         {/* Right Side: Dynamic Chat Box (Active Circle or active DM chat) */}
-        <div className="lg:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl flex flex-col shadow-lg h-[620px] overflow-hidden">
+        <div className="lg:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl flex flex-col shadow-lg h-[400px] sm:h-[520px] lg:h-[620px] overflow-hidden">
           
           {/* Active Chat Header */}
           <div className="bg-white/5 border-b border-white/10 p-4 flex flex-wrap items-center justify-between gap-3 text-left">
@@ -712,13 +712,13 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
                 }
                 value={newMessageText}
                 onChange={(e) => setNewMessageText(e.target.value)}
-                className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[#BA7517] focus:ring-1 focus:ring-[#BA7517] text-white placeholder-gray-500 transition-all shadow-inner"
+                className="flex-1 bg-black/20 border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm focus:outline-none focus:border-[#BA7517] focus:ring-1 focus:ring-[#BA7517] text-white placeholder-gray-500 transition-all shadow-inner"
               />
               <button
                 type="submit"
-                className="bg-[#BA7517] hover:bg-[#F3C06D] hover:text-[#022719] text-white p-2.5 rounded-xl transition-all shadow-md flex items-center justify-center"
+                className="bg-[#BA7517] hover:bg-[#F3C06D] hover:text-[#022719] text-white p-2 sm:p-2.5 rounded-lg sm:rounded-xl transition-all shadow-md flex items-center justify-center"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 sm:w-4 sm:h-4" />
               </button>
             </div>
           </form>

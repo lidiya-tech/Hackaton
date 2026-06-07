@@ -315,114 +315,118 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
 
   // --- RENDERING CHAT INTERFACE ---
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#022719]/50 to-[#085041]/30">
+      <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 flex-1 flex flex-col">
       
       {/* Page Header with User Profile Details */}
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-lg">
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 shadow-lg">
         <div className="flex items-center space-x-3 text-left">
-          <div className="w-10 h-10 rounded-full bg-[#BA7517] border border-[#F3C06D] flex items-center justify-center text-lg font-bold text-white shadow-md">
+          <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-[#BA7517] border border-[#F3C06D] flex items-center justify-center text-sm sm:text-lg font-bold text-white shadow-md flex-shrink-0">
             {currentUser.nickname.charAt(0)}
           </div>
-          <div>
-            <h1 className="text-sm font-bold text-white flex items-center gap-1.5 m-0">
-              {currentLang === 'en' ? "Welcome back, " : "እንኳን ደህና መጡ፣ "}
-              <span className="text-[#BA7517]">{currentUser.nickname}</span>
+          <div className="min-w-0">
+            <h1 className="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5 m-0 truncate">
+              {currentLang === 'en' ? "Welcome, " : "እንኳን ፣ "}
+              <span className="text-[#BA7517] truncate">{currentUser.nickname}</span>
             </h1>
-            <span className="text-[10px] text-[#C1C3AC] block mt-0.5">
-              @{currentUser.username} • {currentUser.email || "No email"} • {t.community}
+            <span className="text-[9px] sm:text-[10px] text-[#C1C3AC] block mt-0.5 truncate">
+              @{currentUser.username}
             </span>
           </div>
         </div>
 
         {/* Action controls */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 flex-shrink-0">
           <button
             onClick={onLogout}
-            className="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center shadow-sm transition-all cursor-pointer"
+            className="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-semibold flex items-center shadow-sm transition-all cursor-pointer"
           >
-            <LogOut className="w-3.5 h-3.5 mr-1" />
-            {currentLang === 'en' ? "Log Out" : "ውጣ"}
+            <LogOut className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1" />
+            <span className="hidden sm:inline">{currentLang === 'en' ? "Log Out" : "ውጣ"}</span>
+            <span className="sm:hidden">{currentLang === 'en' ? "Out" : "ውጣ"}</span>
           </button>
         </div>
       </div>
 
       {/* Explanatory Multi-group Alert */}
-      <div className="bg-white/5 backdrop-blur-md border border-[#534AB7]/40 p-4 rounded-xl flex items-start space-x-3 text-left shadow-sm">
-        <Info className="w-5 h-5 text-[#A69EFC] mt-0.5 flex-shrink-0" />
-        <div className="text-xs text-[#EFEFFA] space-y-1">
+      <div className="bg-white/5 backdrop-blur-md border border-[#534AB7]/40 p-3 sm:p-4 rounded-lg sm:rounded-xl flex items-start space-x-2 sm:space-x-3 text-left shadow-sm">
+        <Info className="w-4 sm:w-5 h-4 sm:h-5 text-[#A69EFC] mt-0.5 flex-shrink-0" />
+        <div className="text-[9px] sm:text-xs text-[#EFEFFA] space-y-1 min-w-0">
           <span className="font-bold text-[#A69EFC] block">
-            {currentLang === 'en' ? "Live Multiplayer Sync Mode Active:" : "የቀጥታ ስርጭት ትስስር በርቷል፡"}
+            {currentLang === 'en' ? "Live Sync Active:" : "የቀጥታ ትስስር በርቷል"}
           </span>
-          <p className="leading-relaxed">
+          <p className="leading-relaxed text-[8px] sm:text-[9px]">
             {currentLang === 'en' 
-              ? "Open another private browser window or tab, register/login with a different nickname, and test live real-time conversations instantly."
-              : "ሌላ ታብ (tab) በመክፈት በተለየ ስም በመግባት የቀጥታ መልእክት መላክና መቀበልን መሞከር ይችላሉ።"}
+              ? "Open another tab with a different account to test real-time conversations."
+              : "ሌላ ታብ በመክፈት የቀጥታ መልእክት ሙከራን ይፈጽሙ።"}
           </p>
         </div>
       </div>
 
       {/* Dashboard Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 sm:gap-6 flex-1 min-h-0">
         
         {/* Left Side: Sidebar Directory (Circles & Users Switcher) */}
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col space-y-4 shadow-lg h-[620px]">
+        <div className="md:col-span-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-3 sm:p-4 flex flex-col space-y-3 sm:space-y-4 shadow-lg h-[400px] sm:h-[520px] md:h-auto md:min-h-[620px]">
           
           {/* Tab switches: Circles vs Direct Messages */}
-          <div className="flex bg-black/20 p-1 rounded-xl gap-1 border border-white/5">
+          <div className="flex bg-black/20 p-1 rounded-lg sm:rounded-xl gap-1 border border-white/5">
             <button
               onClick={() => { setActiveTab("circles"); setSearchQuery(""); }}
-              className={`flex-1 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+              className={`flex-1 py-1.5 sm:py-2 rounded-lg text-[9px] sm:text-xs font-semibold flex items-center justify-center gap-1 sm:gap-1.5 transition-all ${
                 activeTab === "circles" 
                   ? "bg-[#1D9E75] text-white shadow-md" 
                   : "text-[#A8B5A0] hover:text-white hover:bg-white/5"
               }`}
             >
-              <Users className="w-3.5 h-3.5" />
-              {currentLang === 'en' ? "Public Circles" : "ማህበረሰቦች"}
+              <Users className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+              <span className="hidden sm:inline">{currentLang === 'en' ? "Circles" : "ማህበረሰቦች"}</span>
+              <span className="sm:hidden">{currentLang === 'en' ? "Groups" : "ማህበር"}</span>
             </button>
             <button
               onClick={() => { setActiveTab("dms"); setSearchQuery(""); }}
-              className={`flex-1 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+              className={`flex-1 py-1.5 sm:py-2 rounded-lg text-[9px] sm:text-xs font-semibold flex items-center justify-center gap-1 sm:gap-1.5 transition-all ${
                 activeTab === "dms" 
                   ? "bg-[#1D9E75] text-white shadow-md" 
                   : "text-[#A8B5A0] hover:text-white hover:bg-white/5"
               }`}
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              {currentLang === 'en' ? "Direct Chats" : "የግል መልእክቶች"}
+              <MessageSquare className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+              <span className="hidden sm:inline">{currentLang === 'en' ? "Direct" : "ግል"}</span>
+              <span className="sm:hidden">{currentLang === 'en' ? "DM" : "ግል"}</span>
             </button>
           </div>
 
           {/* Directory Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-2 sm:top-2.5 w-3.5 sm:w-4 h-3.5 sm:h-4 text-gray-400" />
             <input
               type="text"
               placeholder={
                 activeTab === "circles"
-                  ? (currentLang === 'en' ? "Search circles..." : "ማህበረሰቦችን ፈልግ...")
-                  : (currentLang === 'en' ? "Search users..." : "ሰዎችን ፈልግ...")
+                  ? (currentLang === 'en' ? "Search circles..." : "ማህበረሰቦች ፈልግ...")
+                  : (currentLang === 'en' ? "Search users..." : "ሰዎች ፈልግ...")
               }
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-black/20 border border-white/10 pl-9 pr-4 py-2 rounded-lg text-xs focus:outline-none focus:border-[#BA7517] focus:ring-1 focus:ring-[#BA7517] text-white placeholder-gray-500 transition-all"
+              className="w-full bg-black/20 border border-white/10 pl-9 pr-3 sm:pr-4 py-1.5 sm:py-2 rounded-lg text-[9px] sm:text-xs focus:outline-none focus:border-[#BA7517] focus:ring-1 focus:ring-[#BA7517] text-white placeholder-gray-500 transition-all"
             />
           </div>
 
           {/* Categories Filter (Only visible for Circles tab) */}
           {activeTab === "circles" && (
-            <div className="flex flex-wrap gap-1 pb-2 border-b border-white/10">
+            <div className="flex flex-wrap gap-1 pb-2 sm:pb-3 border-b border-white/10">
               {[
                 { id: "all", label: { en: "All", am: "ሁሉንም" } },
-                { id: "profession", label: { en: "Professions", am: "ሙያዎች" } },
-                { id: "age", label: { en: "Age Stages", am: "እድሜ" } },
+                { id: "profession", label: { en: "Work", am: "ሙያ" } },
+                { id: "age", label: { en: "Age", am: "እድሜ" } },
                 { id: "family", label: { en: "Family", am: "ቤተሰብ" } },
-                { id: "situation", label: { en: "Situations", am: "ሁኔታዎች" } }
+                { id: "situation", label: { en: "Situation", am: "ሁኔታ" } }
               ].map(cat => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-2 py-1 rounded text-[9px] font-bold transition-all border ${
+                  className={`px-2 py-0.5 sm:py-1 rounded text-[8px] sm:text-[9px] font-bold transition-all border ${
                     activeCategory === cat.id
                       ? 'bg-[#BA7517] border-[#F3C06D]/50 text-white shadow-md'
                       : 'bg-black/20 border-transparent text-[#A8B5A0] hover:bg-white/10 hover:text-white'
@@ -435,14 +439,14 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
           )}
 
           {activeTab === "dms" && (
-            <div className="flex bg-black/20 p-1.5 rounded-xl border border-white/10 gap-1.5 justify-between items-center text-left">
-              <span className="text-[10px] font-semibold text-[#C1C3AC]">
-                {currentLang === 'en' ? "Filter Matches:" : "ተመሳሳይ ምርጫ ያላቸውን አሳይ:"}
+            <div className="flex bg-black/20 p-1.5 rounded-lg sm:rounded-xl border border-white/10 gap-1.5 justify-between items-center text-left text-[8px] sm:text-[10px]">
+              <span className="font-semibold text-[#C1C3AC] whitespace-nowrap">
+                {currentLang === 'en' ? "Filter:" : "ምርጫ:"}
               </span>
               <div className="flex gap-1">
                 <button
                   onClick={() => setShowOnlyMatches(false)}
-                  className={`px-2 py-1 rounded-md text-[9px] font-bold transition-all ${
+                  className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md text-[8px] sm:text-[9px] font-bold transition-all whitespace-nowrap ${
                     !showOnlyMatches
                       ? 'bg-[#BA7517] text-white shadow-sm'
                       : 'bg-transparent text-[#A8B5A0] border border-transparent hover:bg-white/10 hover:text-white'
@@ -452,21 +456,21 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
                 </button>
                 <button
                   onClick={() => setShowOnlyMatches(true)}
-                  className={`px-2 py-1 rounded-md text-[9px] font-bold transition-all flex items-center gap-1 ${
+                  className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md text-[8px] sm:text-[9px] font-bold transition-all flex items-center gap-1 whitespace-nowrap ${
                     showOnlyMatches
                       ? 'bg-[#BA7517] text-white shadow-sm'
                       : 'bg-transparent text-[#A8B5A0] border border-transparent hover:bg-white/10 hover:text-white'
                   }`}
                 >
                   <Sparkles className="w-2.5 h-2.5" />
-                  {currentLang === 'en' ? "Same choices" : "ተመሳሳይ ምርጫ"}
+                  <span className="hidden sm:inline">{currentLang === 'en' ? "Match" : "ተመሳሳይ"}</span>
                 </button>
               </div>
             </div>
           )}
 
           {/* Scrollable list content */}
-          <div className="overflow-y-auto flex-1 space-y-2 pr-1 custom-scrollbar">
+          <div className="overflow-y-auto flex-1 space-y-1.5 sm:space-y-2 pr-1 custom-scrollbar">
             {activeTab === "circles" ? (
               filteredGroups.map(group => {
                 const isSelected = activeChatType === "group" && selectedGroupId === group.id;
@@ -478,29 +482,29 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
                       setActiveChatType("group");
                       setSelectedGroupId(group.id);
                     }}
-                    className={`w-full text-left p-3 rounded-xl border transition-all flex justify-between items-center group/btn ${
+                    className={`w-full text-left p-2 sm:p-3 rounded-lg sm:rounded-xl border transition-all flex justify-between items-center group/btn ${
                       isSelected
                         ? 'bg-white/10 border-white/20 text-white shadow-sm'
                         : 'bg-transparent border-transparent text-[#C1C3AC] hover:bg-white/5 hover:border-white/10'
                     }`}
                   >
-                    <div className="space-y-1 text-left">
+                    <div className="space-y-0.5 sm:space-y-1 text-left min-w-0">
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="font-semibold text-xs block">
+                        <span className="font-semibold text-[9px] sm:text-xs block truncate">
                           {currentLang === 'am' ? group.am : (currentLang === 'om' && group.om ? group.om : (currentLang === 'ti' && group.ti ? group.ti : group.en))}
                         </span>
                         {isMatch && (
-                          <span className="px-1 py-0.2 rounded text-[7px] font-bold bg-[#BA7517]/20 text-[#F3C06D] border border-[#BA7517]/40">
-                            ✨ Match
+                          <span className="px-1 py-0.2 rounded text-[7px] font-bold bg-[#BA7517]/20 text-[#F3C06D] border border-[#BA7517]/40 whitespace-nowrap">
+                            ✨
                           </span>
                         )}
                       </div>
-                      <span className="text-[9px] text-[#A8B5A0] group-hover/btn:text-white/70 capitalize block transition-colors">{group.category}</span>
+                      <span className="text-[8px] sm:text-[9px] text-[#A8B5A0] group-hover/btn:text-white/70 capitalize block transition-colors">{group.category}</span>
                     </div>
                     {isSelected ? (
-                      <span className="w-2 h-2 bg-[#BA7517] rounded-full shadow-[0_0_8px_rgba(186,117,23,0.8)]" />
+                      <span className="w-2 h-2 bg-[#BA7517] rounded-full shadow-[0_0_8px_rgba(186,117,23,0.8)] flex-shrink-0" />
                     ) : (
-                      isMatch && <span className="w-1.5 h-1.5 bg-[#BA7517]/40 rounded-full" />
+                      isMatch && <span className="w-1.5 h-1.5 bg-[#BA7517]/40 rounded-full flex-shrink-0" />
                     )}
                   </button>
                 );
@@ -517,28 +521,28 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
                       setActiveChatType("dm");
                       setActiveDmUser(user);
                     }}
-                    className={`w-full text-left p-3 rounded-xl border transition-all flex flex-col space-y-2 group/btn ${
+                    className={`w-full text-left p-2 sm:p-3 rounded-lg sm:rounded-xl border transition-all flex flex-col space-y-1.5 sm:space-y-2 group/btn ${
                       isSelected
                         ? 'bg-white/10 border-white/20 text-white shadow-sm'
                         : 'bg-transparent border-transparent text-[#C1C3AC] hover:bg-white/5 hover:border-white/10'
                     }`}
                   >
-                    <div className="flex items-center justify-between w-full">
-                      <div className="flex items-center space-x-2.5">
-                        <div className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white shadow-sm ${
+                    <div className="flex items-center justify-between w-full min-w-0">
+                      <div className="flex items-center space-x-2 min-w-0">
+                        <div className={`w-6 sm:w-7 h-6 sm:h-7 rounded-full flex items-center justify-center font-bold text-[9px] sm:text-xs text-white shadow-sm flex-shrink-0 ${
                           isSelected ? 'bg-[#534AB7]' : 'bg-[#534AB7]/50'
                         }`}>
                           {user.nickname.charAt(0)}
                         </div>
-                        <div className="text-left">
-                          <span className="font-semibold text-xs block">{user.nickname}</span>
-                          <span className="text-[9px] text-[#A8B5A0] group-hover/btn:text-white/70 block mt-0.5 transition-colors">@{user.username} • {user.email || "No email"}</span>
+                        <div className="text-left min-w-0">
+                          <span className="font-semibold text-[9px] sm:text-xs block truncate">{user.nickname}</span>
+                          <span className="text-[8px] sm:text-[9px] text-[#A8B5A0] group-hover/btn:text-white/70 block mt-0.5 transition-colors truncate">@{user.username}</span>
                         </div>
                       </div>
                       {isSelected ? (
-                        <span className="w-2 h-2 bg-[#A69EFC] rounded-full shadow-[0_0_8px_rgba(166,158,252,0.8)] animate-pulse" />
+                        <span className="w-2 h-2 bg-[#A69EFC] rounded-full shadow-[0_0_8px_rgba(166,158,252,0.8)] animate-pulse flex-shrink-0" />
                       ) : (
-                        <span className="w-1.5 h-1.5 bg-[#534AB7] rounded-full" /> 
+                        <span className="w-1.5 h-1.5 bg-[#534AB7] rounded-full flex-shrink-0" /> 
                       )}
                     </div>
                     {matchInfo.isMatch && (
@@ -546,9 +550,9 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
                         {matchInfo.matches.map((m, idx) => (
                           <span 
                             key={idx} 
-                            className="px-1.5 py-0.5 rounded text-[8px] font-bold bg-[#BA7517]/20 text-[#F3C06D] border border-[#BA7517]/30 capitalize"
+                            className="px-1 py-0.5 rounded text-[7px] sm:text-[8px] font-bold bg-[#BA7517]/20 text-[#F3C06D] border border-[#BA7517]/30 capitalize whitespace-nowrap"
                           >
-                            🤝 {m.type === 'profession' ? getProfessionLabel(m.value) : m.type === 'ageGroup' ? getStageNameById(m.value) : m.value}
+                            {m.type === 'profession' ? getProfessionLabel(m.value) : m.type === 'ageGroup' ? getStageNameById(m.value) : m.value}
                           </span>
                         ))}
                       </div>
@@ -560,12 +564,12 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
 
             {/* Empty States */}
             {activeTab === "circles" && filteredGroups.length === 0 && (
-              <p className="text-xs text-[#A8B5A0] py-6 text-center">
-                {currentLang === 'en' ? "No circles matched search." : "ምንም ማህበረሰብ አልተገኘም።"}
+              <p className="text-[8px] sm:text-xs text-[#A8B5A0] py-6 text-center">
+                {currentLang === 'en' ? "No circles matched." : "ምንም ማህበረሰብ አልተገኘም።"}
               </p>
             )}
             {activeTab === "dms" && filteredUsers.length === 0 && (
-              <p className="text-xs text-[#A8B5A0] py-6 text-center">
+              <p className="text-[8px] sm:text-xs text-[#A8B5A0] py-6 text-center">
                 {currentLang === 'en' ? "No users found." : "ምንም ተጠቃሚ አልተገኘም።"}
               </p>
             )}
@@ -573,7 +577,7 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
         </div>
 
         {/* Right Side: Dynamic Chat Box (Active Circle or active DM chat) */}
-        <div className="lg:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl flex flex-col shadow-lg h-[620px] overflow-hidden">
+        <div className="md:col-span-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl flex flex-col shadow-lg h-[400px] sm:h-[520px] md:h-auto md:min-h-[620px] overflow-hidden">
           
           {/* Active Chat Header */}
           <div className="bg-white/5 border-b border-white/10 p-4 flex flex-wrap items-center justify-between gap-3 text-left">
@@ -598,26 +602,50 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
               </span>
             </div>
 
+          
+          {/* Active Chat Header */}
+          <div className="bg-white/5 border-b border-white/10 p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 text-left">
+            <div className="min-w-0">
+              <h3 className="font-semibold text-xs sm:text-sm text-white m-0 flex items-center gap-1.5 truncate">
+                {activeChatType === "group" ? (
+                  <>
+                    <Users className="w-3.5 sm:w-4 h-3.5 sm:h-4 mr-0.5 sm:mr-1 text-[#BA7517] flex-shrink-0" />
+                    <span className="truncate">{currentLang === 'am' ? selectedGroup.am : (currentLang === 'om' && selectedGroup.om ? selectedGroup.om : (currentLang === 'ti' && selectedGroup.ti ? selectedGroup.ti : selectedGroup.en))}</span>
+                  </>
+                ) : (
+                  <>
+                    <MessageSquare className="w-3.5 sm:w-4 h-3.5 sm:h-4 mr-0.5 sm:mr-1 text-[#A69EFC] flex-shrink-0" />
+                    <span className="truncate">{activeDmUser ? activeDmUser.nickname : "Direct Chat"}</span>
+                  </>
+                )}
+              </h3>
+              <span className="text-[9px] sm:text-[10px] text-[#A8B5A0] block mt-0.5 truncate">
+                {activeChatType === "group" 
+                  ? (currentLang === 'en' ? "Live Discussion" : "በቅጡ ውይይት")
+                  : `Private: @${activeDmUser?.username}`}
+              </span>
+            </div>
+            
             {/* Actions (Only for Group Chat) */}
             {activeChatType === "group" && (
-              <div className="flex gap-2">
+              <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
                 <button
                   onClick={getWeeklyDigest}
-                  className="bg-[#534AB7]/20 hover:bg-[#534AB7]/40 text-[#A69EFC] border border-[#534AB7]/40 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center shadow-sm transition-all"
+                  className="bg-[#534AB7]/20 hover:bg-[#534AB7]/40 text-[#A69EFC] border border-[#534AB7]/40 px-2 sm:px-3 py-1.5 rounded-lg text-[9px] sm:text-xs font-semibold flex items-center shadow-sm transition-all"
                 >
-                  <Sparkles className="w-3.5 h-3.5 mr-1" />
-                  {currentLang === 'en' ? "Weekly Digest" : "ሳምንታዊ ማጠቃለያ"}
+                  <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5 mr-1" />
+                  <span className="hidden sm:inline">{currentLang === 'en' ? "Digest" : "ማጠቃለያ"}</span>
                 </button>
-                <div className="flex items-center space-x-1.5 text-xs text-[#BA7517] bg-[#BA7517]/10 p-1.5 rounded-lg border border-[#BA7517]/30">
-                  <Shield className="w-3.5 h-3.5 text-[#BA7517]" />
-                  <span className="text-[10px] font-medium">AI Mod</span>
+                <div className="flex items-center space-x-1 text-[9px] sm:text-xs text-[#BA7517] bg-[#BA7517]/10 p-1.5 rounded-lg border border-[#BA7517]/30">
+                  <Shield className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                  <span className="text-[8px] sm:text-[10px] font-medium hidden sm:inline">AI Mod</span>
                 </div>
               </div>
             )}
           </div>
 
           {/* Messages Listing Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs text-left bg-transparent custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 text-xs text-left bg-transparent custom-scrollbar">
             {messages.map(msg => {
               const isMyMessage = msg.senderUsername === currentUser.username;
               const senderUserObj = !isMyMessage && msg.senderUsername ? usersList.find(u => u.username === msg.senderUsername) : null;
@@ -625,26 +653,26 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
               
               return (
                 <div key={msg.id} className={`flex flex-col ${isMyMessage ? 'items-end' : 'items-start'}`}>
-                  <div className="flex items-center space-x-1 mb-1 text-[9px] text-[#A8B5A0]">
+                  <div className="flex items-center space-x-1 mb-1 text-[8px] sm:text-[9px] text-[#A8B5A0]">
                     <span 
-                      className={`font-semibold ${(!isMyMessage && msg.senderUsername) ? 'hover:underline cursor-pointer text-[#A69EFC]' : ''}`} 
+                      className={`font-semibold truncate ${(!isMyMessage && msg.senderUsername) ? 'hover:underline cursor-pointer text-[#A69EFC]' : ''}`} 
                       onClick={() => {
                         if (!isMyMessage && msg.senderUsername) {
                           openDirectMessage(msg.senderUsername, msg.sender);
                         }
                       }}
                     >
-                      {isMyMessage ? (msg.isAnonymous ? "You (Anonymous)" : "You") : msg.sender}
+                      {isMyMessage ? (msg.isAnonymous ? (currentLang === 'en' ? "You (Anon)" : "ለራስህ (ስም-አልባ)") : (currentLang === 'en' ? "You" : "ለራስህ")) : msg.sender}
                     </span>
                     {matchInfo && matchInfo.isMatch && (
-                      <span className="px-1 py-0.2 rounded text-[7px] font-bold bg-[#BA7517]/20 text-[#F3C06D] border border-[#BA7517]/30 flex items-center gap-0.5 ml-1">
-                        ✨ Match
+                      <span className="px-1 py-0.2 rounded text-[7px] font-bold bg-[#BA7517]/20 text-[#F3C06D] border border-[#BA7517]/30 flex items-center gap-0.5 ml-1 whitespace-nowrap">
+                        ✨
                       </span>
                     )}
                     <span>•</span>
-                    <span>{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    <span className="whitespace-nowrap">{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                   </div>
-                  <div className={`p-3 rounded-2xl max-w-[80%] shadow-sm leading-relaxed ${
+                  <div className={`p-2 sm:p-3 rounded-2xl max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg shadow-sm leading-relaxed text-[9px] sm:text-xs ${
                     isMyMessage 
                       ? 'bg-[#1D9E75] text-white rounded-tr-none' 
                       : 'bg-white/10 text-white border border-white/10 rounded-tl-none backdrop-blur-md'
@@ -661,43 +689,43 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
 
             {messages.length === 0 && (
               <div className="h-full flex items-center justify-center text-[#A8B5A0] py-12 flex-col space-y-2">
-                <p>
+                <p className="text-[9px] sm:text-xs">
                   {activeChatType === "group"
-                    ? (currentLang === 'en' ? "No active discussions yet." : "እስካሁን ምንም ውይይት የለም።")
-                    : (currentLang === 'en' ? "Start your private chat." : "የግል ውይይትዎን እዚህ ይጀምሩ።")}
+                    ? (currentLang === 'en' ? "No messages yet" : "እስካሁን ምንም መልእክት የለም")
+                    : (currentLang === 'en' ? "Start conversation" : "ውይይት ይጀምሩ")}
                 </p>
-                <p className="text-[10px] text-[#A8B5A0]/70">
-                  {currentLang === 'en' ? "Type below to send a message." : "መልእክት ለመላክ ከታች ይጻፉ።"}
+                <p className="text-[8px] sm:text-[10px] text-[#A8B5A0]/70">
+                  {currentLang === 'en' ? "Send first message below" : "የመጀመሪያ መልእክትዎን ከታች ይላኩ"}
                 </p>
               </div>
             )}
           </div>
 
           {/* Form Input Area */}
-          <form onSubmit={handleSendMessage} className="border-t border-white/10 p-4 space-y-3 bg-white/5 backdrop-blur-md">
-            <div className="flex items-center justify-between text-xs text-[#C1C3AC]">
+          <form onSubmit={handleSendMessage} className="border-t border-white/10 p-3 sm:p-4 space-y-2 sm:space-y-3 bg-white/5 backdrop-blur-md">
+            <div className="flex items-center justify-between text-[9px] sm:text-xs text-[#C1C3AC]">
               
               {/* Anonymous toggle (Only visible in Circle group chats) */}
               {activeChatType === "group" ? (
-                <label className="flex items-center space-x-2 cursor-pointer select-none group/anon">
+                <label className="flex items-center space-x-1.5 sm:space-x-2 cursor-pointer select-none group/anon">
                   <input
                     type="checkbox"
                     checked={isAnonymous}
                     onChange={(e) => setIsAnonymous(e.target.checked)}
-                    className="rounded border-white/20 bg-black/20 text-[#BA7517] focus:ring-[#BA7517] w-3.5 h-3.5 transition-colors"
+                    className="rounded border-white/20 bg-black/20 text-[#BA7517] focus:ring-[#BA7517] w-3 sm:w-3.5 h-3 sm:h-3.5 transition-colors"
                   />
-                  <span className={`transition-colors ${isAnonymous ? "text-[#F3C06D] font-bold" : "group-hover/anon:text-white"}`}>
-                    👤 {currentLang === 'en' ? "Post Anonymously" : "ስም-አልባ ሁን"}
+                  <span className={`transition-colors text-[8px] sm:text-xs ${isAnonymous ? "text-[#F3C06D] font-bold" : "group-hover/anon:text-white"}`}>
+                    {currentLang === 'en' ? "Anon" : "ስም-አልባ"}
                   </span>
                 </label>
               ) : (
-                <div className="flex items-center text-xs text-[#A69EFC] font-semibold">
-                  🔒 {currentLang === 'en' ? "Encrypted Chat Thread" : "የተጠበቀ የግል ግንኙነት"}
+                <div className="flex items-center text-[8px] sm:text-xs text-[#A69EFC] font-semibold">
+                  🔒 <span className="hidden sm:inline">{currentLang === 'en' ? "Private" : "ግል"}</span>
                 </div>
               )}
 
-              <span className="text-[9px] text-[#A8B5A0]">
-                {currentLang === 'en' ? "Harmful terms are blocked by AI" : "የማይገቡ ቃላት በ-AI ይታገዳሉ"}
+              <span className="text-[8px] sm:text-[9px] text-[#A8B5A0]">
+                {currentLang === 'en' ? "AI filters harmful terms" : "AI ተገቢ ያልሆኑ ቃላትን ይታገዳል"}
               </span>
             </div>
 
@@ -707,18 +735,18 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
                 required
                 placeholder={
                   activeChatType === "group"
-                    ? (currentLang === 'en' ? "Type your supportive message..." : "የድጋፍ መልእክትዎን እዚህ ይጻፉ...")
-                    : (currentLang === 'en' ? `Message @${activeDmUser?.nickname}...` : `@${activeDmUser?.nickname} የግል መልእክት ይላኩ...`)
+                    ? (currentLang === 'en' ? "Share support..." : "ድጋፍ ያካፍሉ...")
+                    : (currentLang === 'en' ? `Message...` : `መልእክት...`)
                 }
                 value={newMessageText}
                 onChange={(e) => setNewMessageText(e.target.value)}
-                className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[#BA7517] focus:ring-1 focus:ring-[#BA7517] text-white placeholder-gray-500 transition-all shadow-inner"
+                className="flex-1 bg-black/20 border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 text-[9px] sm:text-xs focus:outline-none focus:border-[#BA7517] focus:ring-1 focus:ring-[#BA7517] text-white placeholder-gray-500 transition-all shadow-inner"
               />
               <button
                 type="submit"
-                className="bg-[#BA7517] hover:bg-[#F3C06D] hover:text-[#022719] text-white p-2.5 rounded-xl transition-all shadow-md flex items-center justify-center"
+                className="bg-[#BA7517] hover:bg-[#F3C06D] hover:text-[#022719] text-white p-2 sm:p-2.5 rounded-lg sm:rounded-xl transition-all shadow-md flex items-center justify-center flex-shrink-0"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
               </button>
             </div>
           </form>
@@ -727,21 +755,21 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
 
       {/* Weekly Digest Modal */}
       {showDigest && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#022719]/90 backdrop-blur-2xl rounded-2xl shadow-2xl border border-white/10 max-w-md w-full overflow-hidden p-6 space-y-4">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#022719]/90 backdrop-blur-2xl rounded-2xl shadow-2xl border border-white/10 max-w-sm w-full overflow-hidden p-4 sm:p-6 space-y-3 sm:space-y-4">
             <div className="flex items-center space-x-2 text-left">
-              <Sparkles className="w-5 h-5 text-[#A69EFC]" />
-              <h3 className="font-semibold text-base text-white m-0">
-                {currentLang === 'en' ? "AI Weekly Group Digest" : "የሳምንቱ ማህበረሰብ AI ማጠቃለያ"}
+              <Sparkles className="w-4 sm:w-5 h-4 sm:h-5 text-[#A69EFC] flex-shrink-0" />
+              <h3 className="font-semibold text-xs sm:text-base text-white m-0">
+                {currentLang === 'en' ? "Weekly Digest" : "ሳምንታዊ ማጠቃለያ"}
               </h3>
             </div>
-            <div className="text-xs text-[#C1C3AC] text-left whitespace-pre-line leading-relaxed bg-black/30 p-4 rounded-xl border border-white/5">
+            <div className="text-[8px] sm:text-xs text-[#C1C3AC] text-left whitespace-pre-line leading-relaxed bg-black/30 p-3 sm:p-4 rounded-xl border border-white/5 max-h-64 overflow-y-auto">
               {digestContent}
             </div>
             <div className="flex justify-end">
               <button
                 onClick={() => setShowDigest(false)}
-                className="bg-[#1D9E75] hover:bg-[#1D9E75]/80 text-white text-xs px-4 py-2 rounded-lg font-semibold shadow-sm transition-all"
+                className="bg-[#1D9E75] hover:bg-[#1D9E75]/80 text-white text-[9px] sm:text-xs px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-semibold shadow-sm transition-all"
               >
                 {currentLang === 'en' ? "Close" : "ዝጋ"}
               </button>
@@ -749,6 +777,7 @@ export const Community = ({ currentLang, userProfile, currentUser, onLogout }) =
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

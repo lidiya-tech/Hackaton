@@ -726,7 +726,7 @@ export const CheckIn = ({ currentLang, onChangeLang, userProfile, onUpdateProfil
                       onChange={() => setEcon(opt.id)}
                       className="text-[#1D9E75] focus:ring-[#1D9E75] mr-2"
                     />
-                    <span>{currentLang === 'en' ? opt.en : currentLang === 'am' ? opt.am : currentLang === 'om' ? (opt.om || opt.en) : (opt.ti || opt.en)}</span>
+                    <span className="text-gray-700">{currentLang === 'en' ? opt.en : currentLang === 'am' ? opt.am : currentLang === 'om' ? (opt.om || opt.en) : (opt.ti || opt.en)}</span>
                   </label>
                 ))}
               </div>
@@ -766,7 +766,7 @@ export const CheckIn = ({ currentLang, onChangeLang, userProfile, onUpdateProfil
                       }}
                       className="rounded text-[#1D9E75] focus:ring-[#1D9E75] mr-2"
                     />
-                    <span>{currentLang === 'en' ? c.en : currentLang === 'am' ? c.am : currentLang === 'om' ? (c.om || c.en) : (c.ti || c.en)}</span>
+                    <span className="text-gray-700">{currentLang === 'en' ? c.en : currentLang === 'am' ? c.am : currentLang === 'om' ? (c.om || c.en) : (c.ti || c.en)}</span>
                   </label>
                 ))}
               </div>
@@ -791,7 +791,7 @@ export const CheckIn = ({ currentLang, onChangeLang, userProfile, onUpdateProfil
               <button
                 type="button"
                 onClick={handleCompleteOnboarding}
-                className="bg-[#1D9E75] hover:bg-[#1D9E75]/95 text-white font-bold px-10 py-4 rounded-2xl shadow-md transition-all text-xs uppercase tracking-wider animate-bounce-soft flex items-center space-x-2"
+                className="bg-[#1D9E75] hover:bg-[#1D9E75]/95 text-black font-bold px-10 py-4 rounded-2xl shadow-md transition-all text-xs uppercase tracking-wider animate-bounce-soft flex items-center space-x-2"
               >
                 <span>✨</span>
                 <span>
